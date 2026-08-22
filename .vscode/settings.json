@@ -1,0 +1,8 @@
+{
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt",
+    "editor.formatOnSave": true
+  },
+  "shfmt.executablePath": "/opt/homebrew/bin/shfmt",
+  "shfmt.executableArgs": ["-i", "4", "-ci"]
+}
