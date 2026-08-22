@@ -16,6 +16,13 @@ source "$FUNCTIONS_DIR/env-operations.sh"
 source "$FUNCTIONS_DIR/process-operations.sh"
 source "$FUNCTIONS_DIR/students-operations.sh"
 
+if [ "$1" = "-d" ]; then
+    delete_environment
+	exit 0
+fi
+
+validate_filename_env_variable
+
 while true; do
     echo -e "\n======================================"
     echo "          PROYECTO FASE 1"
@@ -33,7 +40,7 @@ while true; do
 
     case "$option" in
         1)
-            create_environment 
+            create_environment
             ;;
         2)
             run_process
