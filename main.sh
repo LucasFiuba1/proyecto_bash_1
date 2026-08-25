@@ -21,8 +21,6 @@ if [ "$1" = "-d" ]; then
 	exit 0
 fi
 
-validate_filename_env_variable
-
 while true; do
     echo -e "\n======================================"
     echo "          PROYECTO FASE 1"
@@ -40,7 +38,7 @@ while true; do
 
     case "$option" in
         1)
-            create_environment
+            create_environment "$INPUT_DIR" "$OUTPUT_DIR" "$PROCESSED_DIR"
             ;;
         2)
             run_process
