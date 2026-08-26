@@ -1,22 +1,19 @@
 #!/bin/bash
 
 create_environment() {
-    local input_dir="$1"
-    local output_dir="$2"
-    local processed_dir="$3"
-
-    if [ -d "$input_dir" ] && [ -d "$output_dir" ] && [ -d "$processed_dir" ]; then
+    if [ -d "$INPUT_DIR" ] && [ -d "$OUTPUT_DIR" ] && [ -d "$PROCESSED_DIR" ]; then
         echo "El entorno ya existe."
-        exit 0
+        return
     fi
 
-    if ! mkdir -p "$input_dir" "$output_dir" "$processed_dir"; then
+    if ! mkdir -p "$INPUT_DIR" "$OUTPUT_DIR" "$PROCESSED_DIR"; then
         echo "ERROR: No se pudo crear el entorno." >&2
-        exit 1
+        return
     fi
 
+    cp "$SCRIPT_DIR/consolidar.sh" "$BASE_DIR/consolidar.sh"
+    chmod +x "$BASE_DIR/consolidar.sh"
     echo "Entorno creado correctamente en $BASE_DIR"
-    exit 0
 }
 
 delete_environment() {

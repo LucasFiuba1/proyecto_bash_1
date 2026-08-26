@@ -21,7 +21,8 @@ if [ "$1" = "-d" ]; then
 	exit 0
 fi
 
-while true; do
+option=""
+while [ "$option" != "7" ]; do
     echo -e "\n======================================"
     echo "          PROYECTO FASE 1"
     echo "======================================"
