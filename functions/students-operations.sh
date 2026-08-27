@@ -1,17 +1,17 @@
 #!/bin/bash
 
 source "./constants.sh"
-source "./env-operations.sh"
+source "$FUNCTIONS_DIR/env-operations.sh"
 
 list_students_by_number() {
-    if ! does_outputfile_exist; then
-        echo "El archivo $OUTPUT_FILE no existe."
-        return 1
-    else
+    if does_outputfile_exist; then
         echo -e "\nAlumnos ordenados por número de padrón:"
         echo "--------------------------------------"
 
         sort -n -k1,1 "$OUTPUT_FILE"
+    else
+        echo "El archivo $OUTPUT_FILE no existe."
+        return 1
     fi
 }
 

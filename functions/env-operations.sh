@@ -11,7 +11,7 @@ does_environment_exist() {
 }
 
 does_outputfile_exist() {
-    [ -f "OUTPUT_FILE" ]
+    [ -f "$OUTPUT_FILE" ]
 }
 
 create_environment() {
