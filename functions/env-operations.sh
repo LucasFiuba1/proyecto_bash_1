@@ -7,7 +7,8 @@ save_filename() {
 does_environment_exist() {
     [ -d "$INPUT_DIR" ] &&
         [ -d "$OUTPUT_DIR" ] &&
-        [ -d "$PROCESSED_DIR" ]
+        [ -d "$PROCESSED_DIR" ] &&
+        [ -f "$BASE_DIR/consolidar.sh" ]
 }
 
 does_outputfile_exist() {
@@ -27,13 +28,31 @@ create_environment() {
 
     save_filename
 
-    cp "$SCRIPT_DIR/consolidar.sh" "$BASE_DIR/consolidar.sh"
+    if ! cp "$SCRIPT_DIR/consolidar.sh" "$BASE_DIR/consolidar.sh"; then
+        echo "ERROR: No se pudo copiar consolidar.sh." >&2
+        return 1
+    fi
     chmod +x "$BASE_DIR/consolidar.sh"
+
     echo "Entorno creado correctamente en $BASE_DIR"
 }
 
 delete_environment() {
-    ...
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+
+        if kill -0 "$PID" 2>/dev/null; then
+            kill "$PID"
+            echo "Proceso consolidar.sh finalizado."
+        fi
+    fi
+
+    if [ -d "$BASE_DIR" ]; then
+        rm -rf "$BASE_DIR"
+        echo "Entorno EPNro1 eliminado."
+    else
+        echo "El entorno EPNro1 no existe."
+    fi
 }
 
 validate_filename_env_variable() {
