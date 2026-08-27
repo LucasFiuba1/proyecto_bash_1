@@ -16,7 +16,11 @@ list_students_by_number() {
 }
 
 show_top_grades() {
-    ...
+    if does_outputfile_exist; then
+        sort -k 5nr "$OUTPUT_FILE" | head -n 10
+    else
+        echo "El archivo $FILENAME.txt no existe"
+    fi
 }
 
 find_student_by_id() {
