@@ -13,9 +13,10 @@ run_process() {
         PID=$(cat "$PID_FILE")
 
         if kill -0 "$PID" 2>/dev/null; then
-            echo "El proceso consolidar.sh ya está ejecutándose."
+            echo -e "\nEl proceso consolidar.sh ya está ejecutándose."
             echo "PID: $PID"
-			return 1
+            echo "--------------------------------------"
+            return 1
         else
             rm -f "$PID_FILE"
         fi
@@ -27,13 +28,15 @@ run_process() {
 
     echo "$PID" >"$PID_FILE"
 
-    echo "Proceso consolidar.sh iniciado en background."
+    echo -e "\nProceso consolidar.sh iniciado en background."
     echo "PID: $PID"
+    echo "--------------------------------------"
 }
 
 show_log() {
     if does_environment_exist; then
         if [ -f "$LOG_FILE" ]; then
+            echo -e "\n"
             cat "$LOG_FILE"
         else
             echo "El archivo $LOG_FILE no existe"
