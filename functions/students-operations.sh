@@ -4,7 +4,7 @@ source "./constants.sh"
 source "$FUNCTIONS_DIR/env-operations.sh"
 
 FILE_NOT_EXIST_MESSAGE="El archivo $OUTPUT_FILE no existe o esta vacio."
-ENV_NOT_EXIST_MESSAGE="El archivo $OUTPUT_FILE no existe o esta vacio."
+ENV_NOT_EXIST_MESSAGE="El entorno no existe"
 
 list_students_by_number() {
     if does_environment_exist; then
@@ -39,8 +39,8 @@ show_top_grades() {
 
 find_student_by_id() {
     if does_environment_exist; then
-        read -r -p "Ingrese numero de padrón: " padron
         if does_outputfile_exist; then
+            read -r -p "Ingrese numero de padrón: " padron
             if ! grep -wq "$padron" "$OUTPUT_FILE"; then
                 echo "No se encontro a ningun alumno/a con el numero de padrón $padron"
             else
