@@ -7,7 +7,7 @@ source "$FUNCTIONS_DIR/students-operations.sh"
 
 if [ "$1" = "-d" ]; then
     delete_environment
-	exit 0
+    exit 0
 fi
 
 validate_filename_env_variable
@@ -26,7 +26,7 @@ while [ "$option" != "7" ]; do
     echo "7) Salir"
     echo "======================================"
 
-    read -r -p "Seleccione una opción: " option
+    read -r -p $'\nSeleccione una opción: ' option
 
     case "$option" in
         1)
