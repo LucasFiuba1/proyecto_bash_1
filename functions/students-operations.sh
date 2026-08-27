@@ -6,14 +6,18 @@ source "$FUNCTIONS_DIR/env-operations.sh"
 NOT_EXIST_MESSAGE="El archivo $OUTPUT_FILE no existe o esta vacio."
 
 list_students_by_number() {
-    if does_outputfile_exist; then
-        echo -e "\nAlumnos ordenados por número de padrón:"
-        echo "--------------------------------------"
-        sort -n -k1,1 "$OUTPUT_FILE"
-        echo "--------------------------------------"
+    if does_environment_exist; then
+        if does_outputfile_exist; then
+            echo -e "\nAlumnos ordenados por número de padrón:"
+            echo "--------------------------------------"
+            sort -n -k1,1 "$OUTPUT_FILE"
+            echo "--------------------------------------"
+        else
+            echo "$NOT_EXIST_MESSAGE"
+            return 1
+        fi
     else
-        echo "$NOT_EXIST_MESSAGE"
-        return 1
+        echo "El entorno no existe"
     fi
 }
 
