@@ -1,17 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="$HOME/EPNro1"
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-
-INPUT_DIR="$BASE_DIR/entrada"
-OUTPUT_DIR="$BASE_DIR/salida"
-PROCESSED_DIR="$BASE_DIR/procesado"
-
-LOG_FILE="$BASE_DIR/procesado.log"
-PID_FILE="$BASE_DIR/consolidar.pid"
-
-FUNCTIONS_DIR="$SCRIPT_DIR/functions"
-
+source "./constants.sh"
 source "$FUNCTIONS_DIR/env-operations.sh"
 source "$FUNCTIONS_DIR/process-operations.sh"
 source "$FUNCTIONS_DIR/students-operations.sh"
@@ -20,6 +9,8 @@ if [ "$1" = "-d" ]; then
     delete_environment
 	exit 0
 fi
+
+validate_filename_env_variable
 
 option=""
 while [ "$option" != "7" ]; do
@@ -39,7 +30,7 @@ while [ "$option" != "7" ]; do
 
     case "$option" in
         1)
-            create_environment "$INPUT_DIR" "$OUTPUT_DIR" "$PROCESSED_DIR"
+            create_environment
             ;;
         2)
             run_process
