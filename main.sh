@@ -36,7 +36,7 @@ while [ "$option" != "7" ]; do
             run_process
             ;;
         3)
-            list_students
+            list_students_by_number
             ;;
         4)
             show_top_grades

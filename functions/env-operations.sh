@@ -1,13 +1,17 @@
 #!/bin/bash
 
 save_filename() {
-    touch "$OUTPUT_DIR/$FILENAME.txt"
+    touch "$OUTPUT_FILE"
 }
 
 does_environment_exist() {
     [ -d "$INPUT_DIR" ] &&
-    [ -d "$OUTPUT_DIR" ] &&
-    [ -d "$PROCESSED_DIR" ]
+        [ -d "$OUTPUT_DIR" ] &&
+        [ -d "$PROCESSED_DIR" ]
+}
+
+does_outputfile_exist() {
+    [ -f "OUTPUT_FILE" ]
 }
 
 create_environment() {
@@ -21,7 +25,7 @@ create_environment() {
         return 1
     fi
 
-	save_filename
+    save_filename
 
     cp "$SCRIPT_DIR/consolidar.sh" "$BASE_DIR/consolidar.sh"
     chmod +x "$BASE_DIR/consolidar.sh"
