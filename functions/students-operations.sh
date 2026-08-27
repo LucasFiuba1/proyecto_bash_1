@@ -24,5 +24,14 @@ show_top_grades() {
 }
 
 find_student_by_id() {
-    ...
+    read -r -p "Ingrese numero de padrón: " padron
+    if does_outputfile_exist; then
+        if ! grep -wq "$padron" "$OUTPUT_FILE"; then
+            echo "No se encontro a ningun alumno/a con el numero de padrón $padron"
+        else
+            grep -w "$padron" "$OUTPUT_FILE"
+        fi
+    else
+        echo "El archivo $FILENAME.txt no existe"
+    fi
 }
