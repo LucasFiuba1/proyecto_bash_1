@@ -15,7 +15,6 @@ run_process() {
         if kill -0 "$PID" 2>/dev/null; then
             echo -e "\nEl proceso consolidar.sh ya está ejecutándose."
             echo "PID: $PID"
-            echo "--------------------------------------"
             return 1
         else
             rm -f "$PID_FILE"
@@ -30,7 +29,6 @@ run_process() {
 
     echo -e "\nProceso consolidar.sh iniciado en background."
     echo "PID: $PID"
-    echo "--------------------------------------"
 }
 
 show_log() {
