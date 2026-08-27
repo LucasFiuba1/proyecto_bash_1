@@ -32,5 +32,13 @@ run_process() {
 }
 
 show_log() {
-    ...
+    if does_environment_exist; then
+        if [ -f "$LOG_FILE" ]; then
+            cat "$LOG_FILE"
+        else
+            echo "El archivo $LOG_FILE no existe"
+        fi
+    else
+        echo "El entorno no existe"
+    fi
 }
