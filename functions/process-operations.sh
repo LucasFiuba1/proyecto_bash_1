@@ -34,7 +34,7 @@ run_process() {
 show_log() {
     if does_environment_exist; then
         if [ -f "$LOG_FILE" ]; then
-            echo -e "\n"
+            echo -e "\nContenido del archivo .log:"
             cat "$LOG_FILE"
         else
             echo "El archivo $LOG_FILE no existe"
